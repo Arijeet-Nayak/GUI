@@ -107,11 +107,20 @@ class login:
                         #created tooltip
                         tip=Balloon(ws)
 
-                        #function to open access any type of files and binding to buttons(choose file)
-                        def open_file():
-                            file_path=askopenfile(mode='r', filetypes=[('All files', '*.*')])
-                            if file_path is not None:
-                                pass
+                        
+                        my_str1=StringVar()
+                        my_str2=StringVar()
+                        my_str3=StringVar()
+                        
+                        def open_name(hello=None):
+                            file=filedialog.askopenfilename()
+                            if(file):
+                                if hello == 'hwbtn':
+                                    my_str1.set(file)
+                                elif(hello == 'pptbtn'):
+                                    my_str2.set(file)
+                                elif(hello == 'snbtn'):
+                                    my_str3.set(file)
            
                         #function binded to upload button
                         def upload_files():
@@ -136,14 +145,15 @@ class login:
                         hw.grid(row=0, column=0, padx=10)  #placing the label
 
                         #creating button
-                        hwbtn=Button(ws, text='Choose File', bg='#65a2db', command=lambda:open_file())
+                        hwbtn=Button(ws, text='Choose File', bg='#65a2db', command=lambda:open_name('hwbtn'))
                         hwbtn.grid(row=0, column=1)  #placing the button
 
                         #tip message while hovering over the button
                         tip.bind_widget(hwbtn, balloonmsg="Click to choose a file")
 
-                        hwlabel=Label(ws, text='NO FILE SELECTED', foreground='RED')
+                        hwlabel=Label(ws, textvariable=my_str1, foreground='RED')
                         hwlabel.grid(row=0, column=2)
+                        my_str1.set("No file selected")
 
 
                         #creating label
@@ -151,14 +161,15 @@ class login:
                         ppt.grid(row=1, column=0, padx=10)  #placing the label
 
                         #creating button
-                        pptbtn=Button(ws, text='Choose File', bg='#65a2db', command=lambda:open_file())
+                        pptbtn=Button(ws, text='Choose File', bg='#65a2db', command=lambda:open_name('pptbtn'))
                         pptbtn.grid(row=1, column=1)  #placing the button
 
                         #tip message while hovering over the button
                         tip.bind_widget(pptbtn, balloonmsg="Click to choose a file")
 
-                        pptlabel=Label(ws, text='NO FILE SELECTED', foreground='RED')
+                        pptlabel=Label(ws, textvariable=my_str2, foreground='RED')
                         pptlabel.grid(row=1, column=2)
+                        my_str2.set("No file selected")
 
 
                         #creating label
@@ -166,14 +177,15 @@ class login:
                         sn.grid(row=2, column=0, padx=10)  #placing the label
 
                         #creating button
-                        snbtn=Button(ws, text='Choose File', bg='#65a2db', command=lambda:open_file())
+                        snbtn=Button(ws, text='Choose File', bg='#65a2db', command=lambda:open_name('snbtn'))
                         snbtn.grid(row=2, column=1)  #placing the button
 
                         #tip message while hovering over the button
                         tip.bind_widget(snbtn, balloonmsg="Click to choose a file")
 
-                        snlabel=Label(ws, text='NO FILE SELECTED', foreground='RED')
+                        snlabel=Label(ws, textvariable=my_str3, foreground='RED')
                         snlabel.grid(row=2, column=2)
+                        my_str3.set("No file selected")
 
 
 
